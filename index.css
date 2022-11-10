@@ -4,7 +4,8 @@
   3. Navbar
   4. Hero-section
   5. Content
-  5. Footer
+  6. Fishing spots css
+  7. Footer
 */
 
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Open+Sans:wght@300;400;500;600;700;800&family=Roboto:wght@100;300;400;500;700;900&family=Silkscreen:wght@700&display=swap");
@@ -15,45 +16,68 @@
   margin: 0;
   box-sizing: border-box;
   /* font-family: Roboto Slab; */
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
-/*3. Navbar*/
-nav {
-  display: flex;
+body {
+  background-color: #ffe9dc;
+  font-family: "Roboto", sans-serif;
+  font-family: "Merriweather", serif;
 }
-nav #navbar-list {
-  cursor: pointer;
-  display: flex;
-  font-size: 1.4rem;
-  font-weight: 600;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
-  height: 10vh;
-  background-color: rgb(0, 123, 0);
-  list-style: none;
-  color: white;
+
+section {
+  padding: 1rem;
 }
 
 /* 4. Hero-section */
 #hero-section {
+  grid-area: hero;
   display: flex;
-  color: white;
-  font-size: 1.2rem;
   gap: 1rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(rgba(1, 1, 1, 0.25), rgba(1, 1, 1, 0.25)),
-    url("img/lake-640.jpg");
-  height: 30vh;
+  /* background-image: linear-gradient(rgba(1, 1, 1, 0.25), rgba(1, 1, 1, 0.25)),
+    url("img/lake-640.jpg"); */
+  background-image: url(img/hero1.jpg);
+  background-position: center;
+  background-size: cover;
+  /* background-position: center; */
+  height: 40vh;
+  margin-bottom: 12rem;
+  box-shadow: 2px 2px 2px 2px black;
+}
+
+#hero-section h1 {
+  position: absolute;
+  font-size: 1.2rem;
+  display: flex;
+  top: 0.6rem;
+  left: 0.6rem;
+  color: black;
+}
+
+.form {
+  padding: 1rem;
+  position: absolute;
+  margin: auto;
+  top: 12rem;
+  border-radius: 1rem;
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px black solid;
 }
 
 /* 5. Content */
-#content {
+#weathermap {
+  grid-area: weather;
   display: flex;
   height: 50vh;
+  background-color: #ffe9dc;
+
   /* background-color: red; */
   /* background-image: url('img/NorgemapFinal.jpg'); */
   /* background-size: cover; */
@@ -62,7 +86,12 @@ nav #navbar-list {
   background-size: cover;
 }
 
-#content .image-container {
+#weathermap .weathermap-container {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 1rem;
+  border: 1px solid black;
+  grid-area: weather;
   display: grid;
   grid-template-areas:
     "loc1 locTana"
@@ -85,36 +114,35 @@ nav #navbar-list {
   position: relative;
 }
 
-#content .image-container #loc1 {
+#weathermap .weathermap-container #loc1 {
   grid-area: loc1;
 }
 
-#content .image-container #locationTana,
-#content .image-container #locationLofoten,
-#content .image-container #locationHallingdalselva {
+#weathermap .weathermap-container #locationTana,
+#weathermap .weathermap-container #locationLofoten,
+#weathermap .weathermap-container #locationHallingdalselva {
   color: red;
   text-shadow: 1px 1px 1px black;
-  margin: 0.5rem 0.3rem;
   border-radius: 1rem;
   display: flex;
   justify-content: center;
 }
 
-#content .image-container #locationTana {
+#weathermap .weathermap-container #locationTana {
   grid-area: locTana;
 }
 
-#content .image-container #locationLofoten {
+#weathermap .weathermap-container #locationLofoten {
   grid-area: locLofoten;
 }
-#content .image-container #locationHallingdalselva {
+#weathermap .weathermap-container #locationHallingdalselva {
   grid-area: locHall;
 }
 
-#content .image-container #infoHeader {
+#weathermap .weathermap-container #infoHeader {
   grid-area: infoHeader;
 }
-#content .image-container #info {
+#weathermap .weathermap-container #info {
   grid-area: info;
 
   display: flex;
@@ -122,25 +150,10 @@ nav #navbar-list {
   align-items: center;
   flex-direction: column;
 
-  background-color: green;
   color: white;
   border-radius: 1rem;
   padding: 1rem;
 }
-#content .image-container #info h3 {
-  margin-bottom: 0.5rem;
-}
-
-#content .image-container button {
-  margin-top: 0.5rem;
-  padding: 0.5rem 0.3rem;
-  border-radius: .3rem;
-}
-
-/* #content img {
-    width: 100%;
-    height: 100%;
-} */
 
 #mer-info {
   margin-top: 1rem;
@@ -148,47 +161,338 @@ nav #navbar-list {
   justify-content: center;
   align-items: center;
 }
-/* white background for the form */
-.white {
-  padding: 1rem;
-  height: 16rem;
-  width: 16rem;
-  position:absolute;
-  top: 100px;
-  left: 50px;
-  border-radius: 1rem;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border: 1px black solid;
-  z-index: 1;
+
+#admin-display {
+  grid-area: testimonial;
 }
+
 /* Fishing spots */
 #hero-fishingspots {
-  border: 3px solid red;
-  background-color: #FFE9DC;
+  grid-area: hero;
+  margin-bottom: 8rem;
+  background-color: #ffe9dc;
   color: black;
   background-image: url(img/hero\ image.png);
+}
+
+#offer-container {
+  grid-area: offer;
+}
+
+#offer-images {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  text-align: center;
+}
+
+#offer-house,
+#offer-fish,
+#offer-weather,
+#offer-community {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  flex-wrap: wrap;
+  margin: 1rem 1rem;
+}
+
+#offer-house img,
+#offer-fish img,
+#offer-weather img,
+#offer-community img,
+#offer-image-container {
+  mix-blend-mode: multiply;
+  height: 50px;
+  width: 50px;
+}
+
+.user-image-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 60%;
+  align-items: center;
+}
+
+.user-image-container img {
+  width: 50%;
+  height: 50%;
+}
+
+.user-text {
+  margin-top: 0.2vh;
+  display: flex;
+  height: 41%;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.fish-upper-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 40%;
+  margin-top: 2vh;
+}
+
+.fish-upper {
+  display: flex;
+  height: 100%;
+  width: 38%;
+  background-image: url("img/fishIcon.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#fishDescription {
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+.fish-text {
+  display: flex;
+  margin-top: 1.5vh;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  width: 100%;
+  font-size: 1.5rem;
+}
+
+#admin-display {
+  grid-area: testimonial;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-header {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.admin-content {
+  height: 12rem;
+  background-color: pink;
+  overflow: hidden;
+}
+
+#admin-image {
+  width: 100%;
+  height: 100%;
+}
+
+#userDescription {
+  font-family: cursive;
+  font-size: 1.5rem;
+}
+
+.admin-footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+#display-howto {
+  grid-area: steps;
+}
+
+#display-howto h2 {
+  font-size: 1.5rem;
+}
+
+#display-howto ol {
+  margin: 4vw 4vh;
+  list-style-type: list;
+}
+
+#display-howto > ol {
+  font-size: 1.5rem;
+}
+
+#display-howto > ol li {
+  margin-bottom: 2vh;
+}
+
+#fish-places {
+  grid-area: calculator;
+  display: flex;
+  justify-content: center;
+}
+
+#fish-places input {
+  border-style: none;
+  width: 80vw;
+  background-color: green;
+  border-radius: 16px;
+  color: white;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.calculator-container {
+  height: 40vh;
+  border-radius: 8px;
+  background-image: url("img/kalkylatorFinal.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+
+
+.calc-text-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.calc-text-container h3 {
+  margin-bottom: 1rem;
+}
+
+/* Fishing spots */
+#hero-fishingspots {
+  background-color: #ffe9dc;
+  color: black;
+  background-image: url("img/fishing-spots/hero-lofoten.png");
   background-position: center;
   background-size: cover;
   display: flex;
   height: 30vh;
 }
 
-.startpunkt, .checkbox {
-    display: flex;
-    flex-direction: column;
-    gap: .4rem;
-    margin-bottom: .6rem;
+.label,
+.checkbox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
 }
 
 .checkradio {
   display: flex;
+  gap: 1rem;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: center;
 }
 
 .radiobutt {
   display: flex;
   justify-content: center;
-  flex: 1;
+  flex-direction: column;
+  border: 1px solid black;
+  border-radius: .5rem;
+  padding: .3rem;
+}
+
+.radiobutt-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.btn-div {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.btn-div input {
+  padding: 0.5rem 2rem;
+  border-radius: .5rem;
+  color: white;
+  background-color: #4F7336;
+}
+
+footer {
+  grid-area: footer;
+  background-color: #733b36;
+  padding: 1rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+footer p {
+  margin-bottom: .3rem;
+}
+footer a {
+  color: white;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "hero"
+    "offer"
+    "steps"
+    "testimonial"
+    "weather"
+    "calculator"
+    "footer";
+}
+
+@media screen and (min-width: 924px) {
+  body {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "hero hero"
+      "offer steps"
+      "testimonial weather"
+      "calculator calculator"
+      "footer footer";
+  }
+
+  #hero-section {
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 0;
+  }
+  #hero-section > h1 {
+    font-size: 2rem;
+  }
+
+  .form {
+    left: 5rem;
+  }
+}
+@media screen and (min-width: 1024px) {
+  body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas:
+      "hero hero hero"
+      "offer steps testimonial"
+      "weather calculator calculator"
+      "footer footer footer";
+  }
+
+  #hero-section {
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    margin-bottom: 0;
+  }
+
+  #hero-section > h1 {
+    font-size: 2.6rem;
+  }
+  .form {
+    left: 8rem;
+  }
 }
