@@ -3,33 +3,66 @@ const queryString = window.location.search;
 
 const urlParams = new URLSearchParams(queryString);
 
-let destinationInput = urlParams.get('destination');
-let startpointInput = urlParams.get('startpoint');
-let vechileInput = urlParams.get('vechile');
+let destinationInput = urlParams.get("destination");
+let startpointInput = urlParams.get("startpoint");
+let vechileInput = urlParams.get("vechile");
 
-let guideInput = urlParams.get('guide');
-let equipementInput = urlParams.get('equipement');
+let guideInput = urlParams.get("guide");
+let equipementInput = urlParams.get("equipement");
 
-let nightValue = Number(urlParams.get('night'));
-console.log(nightValue)
+let nightValue = Number(urlParams.get("night"));
+console.log(nightValue);
 
 let guideValue = 0;
 let equipementValue = 0;
 
-if(guideInput !== "no-guide") {
+if (guideInput !== "no-guide") {
   guideValue = Number(guideInput);
 }
 
-if(equipementInput !== "no-equipement") {
-  equipementValue = Number(equipementInput)
+if (equipementInput !== "no-equipement") {
+  equipementValue = Number(equipementInput);
 }
 
-console.log(guideValue)
+console.log(guideValue);
 console.log(equipementValue);
 console.log(destinationInput);
 console.log(startpointInput);
 console.log(vechileInput);
+/* determines which number is returned based on the users choice of destination. The number returned is the KM value for distance to location */
+// average vechile gas consumption
 
+const averageVehicleLiter100Km = 8; // + "liter per 100km";
+const motorcycleVehicleLiter100Km = 4; // + "liter per 100km";
+const suvVehicleLiter100Km = 10; // "liter per 100km";
+
+const travelCostVehicle = (vehicle, distance, currgasprice) => {
+  return (vehicle / 100) * distance * currgasprice; // ger vehicle liter per km * distans till location * nuvarande gas price
+};
+travelCostVehicle(vehicleChoice, destinationChoice, "gaspriceapi");
+//
+//
+const destinationChoice = (destinationInput) => {
+  if (destinationInput === "Tana") {
+    return tanaDistance;
+  } else if (destinationInput === "Lofoten") {
+    return lofotenDistance;
+  } else return hallingdalselvaDistance;
+};
+//
+const vehicleChoice = (vechileInput) => {
+  if (vechileInput === "motorcycle") {
+    return motorcycleVehicleLiter100Km;
+  } else if (vechileInput === "car") {
+    return averageVehicleLiter100Km;
+  } else return suvVehicleLiter100Km;
+};
+/*const travelCostmotorcyleVehicle = (distance, currgasprice) => {
+  return (motorcycleVehicleLiter100Km / 100) * distance * currgasprice;
+};
+const travelCostSuvVehicle = (distance, currgasprice) => {
+  return (suvVehicleLiter100Km / 100) * distance * currgasprice;
+}; */
 // 2. Funktioner för att visa graf med Chart.js
 
 // funktion, visa bil eller boende graf med radio knappar
@@ -99,30 +132,13 @@ calculateLivingCost(livingExpensesInput, nights);
 // det hade varit nice att ha en slider för antal dagar...
 // och en funktion som räknar om priset beroende på dagar
 
-// average vechile gas consumption
-
-const averageVehicleLiter100Km = 8; // + "liter per 100km";
-const motorcycleVehicleLiter100Km = 4; // + "liter per 100km";
-const suvVehicleLiter100Km = 10; // "liter per 100km";
-
-const travelCostAverageVehicle = (distance, currgasprice) => {
-  return (averageVehicleLiter100Km / 100) * distance * currgasprice;
-};
-
-const travelCostmotorcyleVehicle = (distance, currgasprice) => {
-  return (motorcycleVehicleLiter100Km / 100) * distance * currgasprice;
-};
-const travelCostSuvVehicle = (distance, currgasprice) => {
-  return (suvVehicleLiter100Km / 100) * distance * currgasprice;
-};
-
 // hur kan jag få dem här lokala i calculateGasCost?
 // ThecodingTrain gjorde det snyggt i chart.js youtube videon.
 const carArraySmall = [];
 const carArrayMedium = [];
 const carArrayLarge = [];
 // input funktioner för data ovanför...
-
+/*
 let calculateGasCost = (carSize, gasPrice, nights) => {
   let calculateGasCostSmall = (carSize, gasPrice, nights) => {
     gasCost = 0;
@@ -152,7 +168,7 @@ let calculateGasCost = (carSize, gasPrice, nights) => {
 };
 
 calculateGasCost(largeCar, gasPrice, nights);
-
+*/
 const travelCostChart = document.querySelector("#myChartContainer");
 
 const ctx = document.querySelector("#myChart").getContext("2d");
